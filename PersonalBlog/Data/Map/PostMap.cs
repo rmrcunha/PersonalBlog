@@ -4,7 +4,7 @@ using PersonalBlog.Models;
 
 namespace PersonalBlog.Data.Map
 {
-    public class PostMap:IEntityTypeConfiguration<PostsModel>
+    public class PostMap : IEntityTypeConfiguration<PostsModel>
     {
         public void Configure(EntityTypeBuilder<PostsModel> builder)
         {
@@ -12,8 +12,8 @@ namespace PersonalBlog.Data.Map
             builder.Property(x => x.Description).IsRequired().HasMaxLength(250);
             builder.Property(x => x.UserId);
             builder.Property(x => x.UserName);
-            builder.Property(x => x.Created.Equals(DateTime.UtcNow));
-            builder.Property(x => x.LastUpdated.Equals(DateTime.UtcNow));
+            builder.Property(x => x.Created);
+            builder.Property(x => x.LastUpdated);
             builder.HasOne(x => x.User);
 
         }

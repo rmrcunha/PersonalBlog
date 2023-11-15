@@ -8,6 +8,6 @@
         public string? UserName { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastUpdated { get; set; }
-        public UserModel? User { get; set;}
+        public UserModel? User { get; set; }
     }
 }

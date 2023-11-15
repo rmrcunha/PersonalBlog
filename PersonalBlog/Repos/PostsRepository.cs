@@ -32,7 +32,7 @@ namespace PersonalBlog.Repos
         {
             PostsModel postById = await GetPostById(id);
 
-            if(postById == null)
+            if (postById == null)
             {
                 throw new Exception("Não existe post para este ID");
 

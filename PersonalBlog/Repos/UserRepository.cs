@@ -45,7 +45,7 @@ namespace PersonalBlog.Repos
             {
                 throw new Exception("The user doesn't exists");
             }
-            
+
             userById.Name = user.Name;
             userById.Email = user.Email;
 
