@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using PersonalBlog.Data;
+using PersonalBlog.Repos;
+using PersonalBlog.Repos.Interfaces;
+
 
 namespace PersonalBlog
 {
@@ -13,6 +18,15 @@ namespace PersonalBlog
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddEntityFrameworkSqlServer()
+                .AddDbContext<PostsDbContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
+                );
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IPostRespository, PostsRepository>();
+
 
             var app = builder.Build();
 
