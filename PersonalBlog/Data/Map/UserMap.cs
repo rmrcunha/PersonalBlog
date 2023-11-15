@@ -12,6 +12,7 @@ namespace PersonalBlog.Data.Map
             builder.Property(x => x.Name).IsRequired().HasMaxLength(255);
             builder.Property(x => x.Email).IsRequired().HasMaxLength(255);
             builder.Property(x => x.Password).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.Status);
         }
     }
 }

@@ -15,22 +15,33 @@ namespace PersonalBlog.Repos
         public async Task<PostsModel> GetPostById(int id)
         {
             return await _dbcontext.Posts
-                .Include(x => x.Users)
+                .Include(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<PostsModel>> GetAllPosts()
+        public async Task<List<PostsModel>> GetAllPosts() => await _dbcontext.Posts.Include(x => x.User).ToListAsync();
+        public async Task<PostsModel> AddPost(PostsModel post)
         {
-            
-        }
-        public Task<PostsModel> AddPost(PostsModel post)
-        {
-            throw new NotImplementedException();
+            await _dbcontext.Posts.AddAsync(post);
+            await _dbcontext.SaveChangesAsync();
+
+            return post;
         }
 
-        public Task<bool> DeletePost(int id)
+        public async Task<bool> DeletePost(int id)
         {
-            throw new NotImplementedException();
+            PostsModel postById = await GetPostById(id);
+
+            if(postById == null)
+            {
+                throw new Exception("Não existe post para este ID");
+
+            }
+
+            _dbcontext.Posts.Remove(postById);
+            await _dbcontext.SaveChangesAsync();
+
+            return true;
         }
 
 

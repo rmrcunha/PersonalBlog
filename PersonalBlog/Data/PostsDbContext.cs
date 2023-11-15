@@ -12,7 +12,7 @@ namespace PersonalBlog.Data
         { 
         }
         public DbSet<UserModel> Users { get; set; }
-        public DbSet<PostsDbContext> Posts { get; set; }
+        public DbSet<PostsModel> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
